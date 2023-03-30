@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import CreateCard from './components/FormCard';
 import './App.css';
 
 function App() {
+  const [taskList, setTaskList] = useState([]);
+
+    function deleteTask(id){
+        const newArray = taskList.filter(item => item.id !== id)
+        setTaskList(newArray);
+    }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Add new task</p>
       </header>
+      <CreateCard setTaskList={setTaskList} id={taskList.length + 1}/>
+      <div className="lista">
+            <ul>
+                {
+                    taskList.map((item) => {
+                        return (
+                         <li key={item.id}>  {item.value}   <button onClick={() => {deleteTask(item.id)}}>X</button>   </li>
+                        )
+                    })
+                }
+            </ul>
+         </div>
     </div>
   );
 }
