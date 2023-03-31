@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import CreateCard from './components/FormCard';
 import './App.css';
 
@@ -9,6 +9,8 @@ function App() {
         const newArray = taskList.filter(item => item.id !== id)
         setTaskList(newArray);
     }
+    useEffect(() => {
+    },[]);
 
   return (
     <div className="App">
@@ -21,7 +23,7 @@ function App() {
                 {
                     taskList.map((item) => {
                         return (
-                         <li key={item.id}>  {item.value}   <button onClick={() => {deleteTask(item.id)}}>X</button>   </li>
+                         <li key={item.id}>  {item.name}  {item.value}   <button onClick={() => {deleteTask(item.id)}}>X</button>   </li>
                         )
                     })
                 }

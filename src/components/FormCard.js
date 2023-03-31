@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 
 function CreateCard(props){
 
-    const [newTask, setNewTask] = useState("");
+    const [newTask, setNewTask] = useState({
+        name: '',
+        value: ''
+    });
     const {setTaskList} = props
     
     function buttonEvent(){
@@ -17,9 +20,13 @@ function CreateCard(props){
     }
     return (
       <div className="container">
-         <input type="text" onChange={(e) => {
+         <input placeholder='NumeleTask-ului' type="text" onChange={(e) => {
             e.preventDefault();
-            setNewTask(e.target.value);
+            setNewTask.name(e.target.value);
+         }}/>
+            <input placeholder='Task'type="text" onChange={(e) => {
+            e.preventDefault();
+            setNewTask.value(e.target.value);
          }}/>
          <button onClick = {buttonEvent}>Add task</button>
 
